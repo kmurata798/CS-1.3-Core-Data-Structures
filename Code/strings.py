@@ -4,11 +4,13 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement contains here (iteratively and/or recursively)
+
     if len(pattern) < 1:
         return True
-    for index in range(0, (len(text) - len(pattern) + 1)):
-        if text[index:(index + len(pattern))] == pattern:
+    for index in range(0, (len(text) - len(pattern) + 1)): #loops through ex. 0 --> (10 - 3 + 1) = 0-8
+        #ooboob
+        #   boob 6 - 4 = 2 + 1 = 3 (0, 3)
+        if text[index:(index + len(pattern))].lower() == pattern: #Checks text[0-3] == patterns, etc
             return True
     return False
 
@@ -17,11 +19,11 @@ def find_index(text, pattern):
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_index here (iteratively and/or recursively)
+
     if len(pattern) < 1:
         return 0
     for index in range(0, (len(text) - len(pattern) + 1)):
-        if text[index:(index + len(pattern))] == pattern:
+        if text[index:(index + len(pattern))].lower() == pattern:
             return index
     return None
 
@@ -30,11 +32,11 @@ def find_all_indexes(text, pattern):
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+
     indices = []
     for index in range(0, (len(text) - len(pattern) + 1)):
         if len(indices) <= len(text) - 1:
-            if text[index:(index + len(pattern))] == pattern:
+            if text[index:(index + len(pattern))].lower() == pattern:
                 indices.append(index)
     return indices
 

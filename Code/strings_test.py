@@ -17,7 +17,11 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'abc') is True  # all strings contain themselves
         assert contains('aaa', 'a') is True  # multiple occurrences
         assert contains('aaa', 'aa') is True  # overlapping pattern
-        # TODO: Write more positive test cases with assert is True statements
+        # TODO: Write more positive test cases with assert is True statement
+        assert contains('bacb', 'bac') is True
+        assert contains('bbb', 'bb') is True
+        assert contains('Bobby', 'bob') is True
+        assert contains('mississippi', 'sis') is True
         # ...
 
     def test_contains_with_non_matching_patterns(self):
@@ -27,6 +31,10 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'az') is False  # first letter, but not last
         assert contains('abc', 'abz') is False  # first 2 letters, but not last
         # TODO: Write more negative test cases with assert is False statements
+        assert contains('toy', 'boy') is False
+        assert contains('baby', 'maybe') is False
+        assert contains('ball', 'wall') is False
+        assert contains('car', 'mar') is False
         # ...
 
     def test_contains_with_complex_patterns(self):
@@ -37,6 +45,10 @@ class StringsTest(unittest.TestCase):
         assert contains('bananas', 'nas') is True  # overlapping prefix
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
+        assert contains('mississippi', 'miss') is True
+        assert contains('googoogaagaa', 'aagaa') is True
+        assert contains('lollipop', 'lipop') is True
+        assert contains('hidden', 'idden') is True
         # ...
 
     def test_find_index_with_matching_patterns(self):
@@ -51,6 +63,10 @@ class StringsTest(unittest.TestCase):
         assert find_index('aaa', 'a') == 0  # multiple occurrences
         assert find_index('aaa', 'aa') == 0  # overlapping pattern
         # TODO: Write more positive test cases with assert equal int statements
+        assert find_index('call', 'all') == 1
+        assert find_index('already', 'ready') == 2
+        assert find_index('papercut', 'paper') == 0
+        assert find_index('dolphin', 'in') == 5
         # ...
 
     def test_find_index_with_non_matching_patterns(self):
@@ -60,6 +76,10 @@ class StringsTest(unittest.TestCase):
         assert find_index('abc', 'az') is None  # first letter, but not last
         assert find_index('abc', 'abz') is None  # first 2 letters, but not last
         # TODO: Write more negative test cases with assert is None statements
+        assert find_index('cat', 'dog') is None
+        assert find_index('large', 'small') is None
+        assert find_index('dog', 'god') is None
+        assert find_index('love', 'evil') is None
         # ...
 
     def test_find_index_with_complex_patterns(self):
@@ -75,6 +95,10 @@ class StringsTest(unittest.TestCase):
         assert find_index('abra cadabra', 'abra') == 0  # multiple occurrences
         assert find_index('abra cadabra', 'adab') == 6  # overlapping prefix
         # TODO: Write more test cases that check complex patterns or edge cases
+        assert find_index('yzxyzxyz', 'xyz') == 2
+        assert find_index('facebook', 'book') == 4
+        assert find_index('laptop', 'top') == 3
+        assert find_index('interesting', 'rest') == 4
         # You'll need a lot more than this to test your algorithm's robustness
         # ...
 
@@ -90,6 +114,10 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('aaa', 'a') == [0, 1, 2]  # multiple occurrences
         assert find_all_indexes('aaa', 'aa') == [0, 1]  # overlapping pattern
         # TODO: Write more positive test cases with assert equal list statements
+        assert find_all_indexes('xyz', 'yz') == [1]
+        assert find_all_indexes('babababy', 'ba') == [0, 2, 4]
+        assert find_all_indexes('Hubbabubba', 'ubba') == [1, 6]
+        assert find_all_indexes('crazy', 'razy') == [1]
         # ...
 
     def test_find_all_indexes_with_non_matching_patterns(self):
@@ -99,6 +127,10 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abc', 'az') == []  # first letter, but not last
         assert find_all_indexes('abc', 'abz') == []  # first 2 letters, but not last
         # TODO: Write more negative test cases with assert equal list statements
+        assert find_all_indexes('corn', 'a') == []
+        assert find_all_indexes('boomer', 'tu') == []
+        assert find_all_indexes('qwerty', 'gas') == []
+        assert find_all_indexes('xyz', 'abc') == []
         # ...
 
     def test_find_all_indexes_with_complex_patterns(self):
@@ -115,6 +147,10 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abra cadabra', 'adab') == [6]  # overlapping prefix
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
+        assert find_all_indexes('mamamiya', 'ma') == [0, 2]
+        assert find_all_indexes('hiccup', 'cup') == [3]
+        assert find_all_indexes('fiftyfive', 'fi') == [0, 5]
+        assert find_all_indexes('pencils', 'pen') == [0]
         # ...
 
 
