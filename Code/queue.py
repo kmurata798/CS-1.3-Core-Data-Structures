@@ -21,41 +21,44 @@ class LinkedQueue(object):
 
     def is_empty(self):
         """Return True if this queue is empty, or False otherwise."""
-        # TODO: Check if empty
+        # Check if empty
         if self.list.length() == None:
             return True
         return False
 
     def length(self):
         """Return the number of items in this queue."""
-        # TODO: Count number of items
+        # Count number of items
         self.list.length()
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
-        # TODO: Insert given item
-        self.list.append(item)
+        Running time: O(1) instant access to tail --> append()"""
+        # Insert given item
+        self.list.append(item) # add item after Tail node
+        # self.list.prepend(item) # add item before Head node
 
     def front(self):
         """Return the item at the front of this queue without removing it,
         or None if this queue is empty."""
-        # TODO: Return front item, if any
+        # Return front item, if any
         if not self.is_empty():
-            return self.list.tail.data
+            return self.list.head.data # return head node data
+            # return self.list.tail.data # return tail node data
         return None
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
-        # TODO: Remove and return front item, if any
+        Running time: O(1) intant access to head --> .delete(front)"""
+        # Remove and return front item, if any
         if self.is_empty():
             raise ValueError("Empty Queue!")
 
-        top = self.list.tail.data
-        self.list.delete(top)
-        return top
+        front = self.list.head.data # Define front to be head node
+        # front = self.list.tail.data # Define front to be tail node
+        self.list.delete(front)
+        return front
 
 
 # Implement ArrayQueue below, then change the assignment at the bottom
@@ -86,14 +89,15 @@ class ArrayQueue(object):
     def length(self):
         """Return the number of items in this queue."""
         # Count number of items
-        return len(self.list)
+        return len(self.list) # length of list
 
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) directly adds to back node"""
         # Insert given item
-        self.list.append(item)
+        self.list.append(item) # insert item to the last index in list
+        # self.list.insert(0, item) # insert item to the first index in list
 
     def front(self):
         """Return the item at the front of this queue without removing it,
@@ -102,15 +106,17 @@ class ArrayQueue(object):
         if not self.list:
             return None
         else:
-            return self.list[0]
+            return self.list[0] # return index 0
+            # return self.list[self.length() - 1] # return index n - 1
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) directly removes item from front"""
         # Remove and return front item, if any
         if len(self.list) > 0:
-            return self.list.pop(0)
+            return self.list.pop(0) # remove item in index 0 and return it
+            # return self.list.pop(self.length() - 1) # remove item in index n - 1 and return it
         else:
             raise ValueError
 

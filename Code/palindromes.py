@@ -33,8 +33,8 @@ def is_palindrome_iterative(text):
         if text[first_pt].lower() != text[second_pt].lower():
             return False
         first_pt += 1
-        second_pt += 1
-        return True
+        second_pt -= 1
+    return True
 
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
@@ -45,19 +45,32 @@ def is_palindrome_recursive(text, left=None, right=None):
     text = str
     left = int
     right = int"""
-    if left == None:
-        left = 0
-        right = len(text) - 1
-        extra = " ?!,.;:-_'"
-        for index in extra:
-            text = text.replace(index, '')
-    if left < right and right <= len(text) - 1:
-        if text[left].lower() != text[right].lower():
-            return False
-        is_palindrome_recursive(text, left+1, right-1)
-    if len(text) < 1:
+    # if left == None:
+    #     left = 0
+    #     right = len(text) - 1
+    #     extra = " ?!,.;:-_'"
+    #     for index in extra:
+    #         text = text.replace(index, '')
+    # if left < right and right <= len(text) - 1:
+    #     if text[left].lower() != text[right].lower():
+    #         return False
+    #     is_palindrome_recursive(text, left+1, right-1)
+    # if len(text) < 1:
+    #     return True
+    # return True
+    if len(text) == 0:
         return True
-    return True
+    given = get_letters(text)
+    if left is None and right is None:
+        left = 0
+        right = len(str) - 1
+
+    if given[left] != given[right]:
+        return False
+    elif left >= right:
+        return True
+    else:
+        return is_palindrome_recursive(given, left+1, right-1)
     
         
     # once implemented, change is_palindrome to call is_palindrome_recursive

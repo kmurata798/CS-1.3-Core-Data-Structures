@@ -29,11 +29,12 @@ class LinkedStack(object):
     def length(self):
         """Return the number of items in this stack."""
         # TODO: Count number of items
-        self.list.length()
+        # self.list.length()
+        self.list.size() # 0(1) runtime
 
     def push(self, item):
         """Insert the given item on the top of this stack.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) direct access to the top item"""
         # TODO: Push given item
         self.list.append(item)
 
@@ -48,7 +49,7 @@ class LinkedStack(object):
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) directly remove top item"""
         # TODO: Remove and return top item, if any
         if self.is_empty():
             raise ValueError("Empty Queue!")
@@ -90,9 +91,10 @@ class ArrayStack(object):
 
     def push(self, item):
         """Insert the given item on the top of this stack.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) direct access to head"""
         # Insert given item
-        self.list.insert(0, item)
+        # self.list.append(item) # add item to end of list
+        self.list.insert(0, item) # add item to beginning of list
 
     def peek(self):
         """Return the item on the top of this stack without removing it,
@@ -101,14 +103,17 @@ class ArrayStack(object):
         if not self.list:
             return None
         else:
-            return self.list[0]
+            # return self.list[self.length() - 1] # look at last item of list
+            return self.list[0] # look at first item in list
 
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) directly remove top item"""
         # Remove and return top item, if any
         if len(self.list) > 0:
+            # temp = self.list[self.length() - 1]
+            # self.list.pop(self.length() - 1)
             temp = self.list[0]
             self.list.pop(0)
             return temp
