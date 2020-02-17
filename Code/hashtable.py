@@ -61,7 +61,9 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all entries (key-value pairs) in this hash table.
-        Best and worst case running time: O() under what conditions? [TODO]"""
+        Best and worst case running time:
+        O(n) Need to loop through every item in each of the buckets.
+        """
         # Collect all pairs of key-value entries in each of the buckets
         all_items = []
         for bucket in self.buckets:
@@ -70,7 +72,10 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time:
+        Best case O(1) If we keep track of a count variable, self.size(), return that variable instantly
+        Worst case O(n) 
+        """
         # Count number of key-value entries in each of the buckets
         item_count = 0
         for bucket in self.buckets:
@@ -78,6 +83,7 @@ class HashTable(object):
         return item_count
         # Equivalent to this list comprehension:
         return sum(bucket.length() for bucket in self.buckets)
+        
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
@@ -121,12 +127,13 @@ class HashTable(object):
             # In this case, the given key's value is being updated
             # Remove the old key-value entry from the bucket first
             bucket.delete(entry)
+            self.size -= 1
         # Insert the new key-value entry into the bucket in either case
         bucket.append((key, value))
         # add size
         self.size += 1
         # TODO: Check if the load factor exceeds a threshold such as 0.75
-        if self.load_factor() >= 0.75:
+        if self.load_factor() > 0.75:
         # ...
         # TODO: If so, automatically resize to reduce the load factor
             self._resize()
@@ -166,11 +173,16 @@ class HashTable(object):
             new_size = len(self.buckets) / 2  # Half size
         # TODO: Get a list to temporarily hold all current key-value entries
         # ...
+        current_items = self.items()
         # TODO: Create a new list of new_size total empty linked list buckets
         # ...
+        self.buckets = [LinkedList() for i in range(int(new_size))]
+        self.size = 0
         # TODO: Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
         # ...
+        for key, value in current_items:
+            self.set(key, value)
 
 
 def test_hash_table():

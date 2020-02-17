@@ -8,14 +8,7 @@ def contains(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
-    if len(pattern) < 1:
-        return True
-    for index in range(0, (len(text) - len(pattern) + 1)): #loops through ex. 0 --> (10 - 3 + 1) = 0-8
-        #ooboob
-        #   boob 6 - 4 = 2 + 1 = 3 (0, 3)
-        if text[index:(index + len(pattern))].lower() == pattern: #Checks text[0-3] == patterns, etc
-            return True
-    return False
+    return find_index(text, pattern) != None
 
 def find_index(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
