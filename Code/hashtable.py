@@ -74,21 +74,24 @@ class HashTable(object):
         """Return the number of key-value entries by traversing its buckets.
         Best and worst case running time:
         Best case O(1) If we keep track of a count variable, self.size(), return that variable instantly
-        Worst case O(n) 
+        Worst case O(n) If we dont keep track of a count variable whenever a new entry is added/deleted,
+                        must search/loop through all buckets to count all entries that exist.
         """
         # Count number of key-value entries in each of the buckets
-        item_count = 0
-        for bucket in self.buckets:
-            item_count += bucket.length()
-        return item_count
-        # Equivalent to this list comprehension:
-        return sum(bucket.length() for bucket in self.buckets)
+        # item_count = 0
+        # for bucket in self.buckets:
+        #     item_count += bucket.length()
+        # return item_count
+        # # Equivalent to this list comprehension:
+        # return sum(bucket.length() for bucket in self.buckets)
         
+        return self.size
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) If the target data is located in the first entry/Node in a bucket
+        Worst case running time: O(l) or O(n/b)* because all buckets should ideally have same amount of entries, and worst case would
+        be if the target data is located in the last entry/Node in a bucket."""
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -98,8 +101,9 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) If the target data is located in the first entry/Node in a bucket
+        Worst case running time: O(l) or O(n/b)* because all buckets should ideally have same amount of entries, and worst case would
+        be if the target data is located in the last entry/Node in a bucket."""
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -115,8 +119,9 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time: O(1) If the target data is located in the first entry/Node in a bucket
+        Worst case running time: O(l) or O(n/b)* because all buckets should ideally have same amount of entries, and worst case would
+        be if the target data is located in the last entry/Node in a bucket."""
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -163,22 +168,24 @@ class HashTable(object):
         """Resize this hash table's buckets and rehash all key-value entries.
         Should be called automatically when load factor exceeds a threshold
         such as 0.75 after an insertion (when set is called with a new key).
-        Best and worst case running time: ??? under what conditions? [TODO]
-        Best and worst case space usage: ??? what uses this memory? [TODO]"""
+        Best and worst case running time: O(2n) having to create a new array and linked list while having to transfer the contents over both
+                                            takes n time ==> 2n
+        Best and worst case space usage: O(2n) having to create a new array and linked list while having to transfer the contents over both
+                                            takes n space ==> 2n"""
         # If unspecified, choose new size dynamically based on current size
         if new_size is None:
             new_size = len(self.buckets) * 2  # Double size
         # Option to reduce size if buckets are sparsely filled (low load factor)
         elif new_size is 0:
             new_size = len(self.buckets) / 2  # Half size
-        # TODO: Get a list to temporarily hold all current key-value entries
+        # Get a list to temporarily hold all current key-value entries
         # ...
         current_items = self.items()
-        # TODO: Create a new list of new_size total empty linked list buckets
+        # Create a new list of new_size total empty linked list buckets
         # ...
         self.buckets = [LinkedList() for i in range(int(new_size))]
         self.size = 0
-        # TODO: Insert each key-value entry into the new list of buckets,
+        # Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
         # ...
         for key, value in current_items:
