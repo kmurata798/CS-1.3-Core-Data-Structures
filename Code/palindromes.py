@@ -41,7 +41,7 @@ def is_palindrome_iterative(text):
 
 
 def is_palindrome_recursive(text, left=None, right=None):
-    """time complexity: O(n)
+    """time complexity: O(1)
     text = str
     left = int
     right = int"""

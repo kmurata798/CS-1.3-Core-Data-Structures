@@ -24,14 +24,22 @@ class HashTable(object):
         return hash(key) % len(self.buckets)
 
     def load_factor(self):
-        """Return the load factor, the ratio of number of entries to buckets.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
-        # TODO: Calculate load factor
+        """
+        Return the load factor, the ratio of number of entries to buckets.
+        Best and worst case running time: 
+        O(1) single line of code to calculate # of Key-Value entries divided by 
+        # of buckets. Returns calculation.
+        """
+        # TODO: Calculate load factor WORKS
+        return self.size / len(self.buckets)
+
         # return ...
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: 
+        O(n) Need to loop through every item in each bucket.
+        """
         # Collect all keys in each of the buckets
         all_keys = []
         for bucket in self.buckets:
@@ -41,7 +49,9 @@ class HashTable(object):
 
     def values(self):
         """Return a list of all values in this hash table.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: 
+        O(n) Need to loop through every item in each bucket.
+        """
         # Collect all values in each of the buckets
         all_values = []
         for bucket in self.buckets:
@@ -51,11 +61,11 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all entries (key-value pairs) in this hash table.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time: O() under what conditions? [TODO]"""
         # Collect all pairs of key-value entries in each of the buckets
         all_items = []
         for bucket in self.buckets:
-            all_items.extend(bucket.items())
+            all_items.extend(bucket.items()) # .extend adds EVERYTHING to the list
         return all_items
 
     def length(self):
@@ -113,9 +123,13 @@ class HashTable(object):
             bucket.delete(entry)
         # Insert the new key-value entry into the bucket in either case
         bucket.append((key, value))
+        # add size
+        self.size += 1
         # TODO: Check if the load factor exceeds a threshold such as 0.75
+        if self.load_factor() >= 0.75:
         # ...
         # TODO: If so, automatically resize to reduce the load factor
+            self._resize()
         # ...
 
     def delete(self, key):
@@ -130,6 +144,11 @@ class HashTable(object):
         if entry is not None:  # Found
             # Remove the key-value entry from the bucket
             bucket.delete(entry)
+            # subtract size
+            self.size -= 1
+
+            if self.load_factor() <= 0.20:
+                self._resize(0)
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
