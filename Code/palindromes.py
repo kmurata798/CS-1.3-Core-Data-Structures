@@ -20,7 +20,7 @@ def is_palindrome(text):
 
 
 def is_palindrome_iterative(text):
-    """time complexity: O(n)"""
+    """time complexity: O(n) because your must loop through each word starting from both ends of the string, until you reach the middle"""
     extra = " ?!,.;:-_'"
     for index in extra:
         text = text.replace(index, '')
@@ -39,7 +39,7 @@ def is_palindrome_iterative(text):
 
 
 def is_palindrome_recursive(text, left=None, right=None):
-    """time complexity: O(1)
+    """time complexity: O(1) because you are checking which conditional will run, which does not involve any loops
     text = str
     left = int
     right = int"""
