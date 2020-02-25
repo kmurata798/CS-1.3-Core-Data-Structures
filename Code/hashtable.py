@@ -120,8 +120,7 @@ class HashTable(object):
     def set(self, key, value):
         """Insert or update the given key with its associated value.
         Best case running time: O(1) If the target data is located in the first entry/Node in a bucket
-        Worst case running time: O(l) or O(n/b)* because all buckets should ideally have same amount of entries, and worst case would
-        be if the target data is located in the last entry/Node in a bucket."""
+        Worst case running time: O(1) Instant access to the end of the linked list."""
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -179,15 +178,15 @@ class HashTable(object):
         elif new_size is 0:
             new_size = len(self.buckets) / 2  # Half size
         # Get a list to temporarily hold all current key-value entries
-        # ...
         current_items = self.items()
         # Create a new list of new_size total empty linked list buckets
-        # ...
         self.buckets = [LinkedList() for i in range(int(new_size))]
+        # self.buckets = []
+        # for i in range(int(new_size)):
+        #     buckets.append(LinkedList())
         self.size = 0
         # Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
-        # ...
         for key, value in current_items:
             self.set(key, value)
 
