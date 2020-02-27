@@ -46,7 +46,7 @@ class HashSet:
 #             self.tree.insert(element)
     
 #     def intersection(self, other_set):
-#         new_set = Set)
+#         new_set = Set()
 #         def __init__(self, *args, **kwargs):
 #             super(for element in self.tree.iteems_in_order():
 #             if other_set.contains(element):
