@@ -26,7 +26,7 @@ class BinaryTreeNode(object):
     def height(self):
         """Return the height of this node (the number of edges on the longest
         downward path from this node to a descendant leaf node).
-        TODO: Best and worst case running time: O(h) where h are traversing the height of the tree."""
+        Best and worst case running time: O(h) where h are traversing the height of the tree."""
         # check if ROOT Node exists
         if self is None:
             return 0
@@ -65,7 +65,7 @@ class BinarySearchTree(object):
     def height(self):
         """Return the height of this tree (the number of edges on the longest
         downward path from this tree's root node to a descendant leaf node).
-        TODO: Best and worst case running time: O(h) where h are traversing the height of the tree"""
+        Best and worst case running time: O(h) where h are traversing the height of the tree"""
         # Check if root node has a value and if so calculate its height
         if self.root is not None:
             return self.root.height()
