@@ -35,5 +35,19 @@ class SetTest(unittest.TestCase):
         assert set.contains('R') is True
         assert set.contains('T') is True
 
+    def test_remove(self):
+        elements = ['Z', 'I', 'Q', '4', 'S']
+        set = HashSet(elements)
+        with self.assertRaises(KeyError):
+            set.remove('A')  # Element doesn not exist
+        with self.assertRaises(KeyError):
+            set.remove('X')  # Element does not exist
+        set.remove('Z')
+        set.remove('4')
+        assert set.contains('Z') is False
+        assert set.contains('4') is False
+        with self.assertRaises(KeyError):
+            set.remove('Z')  # Element does not exist anymore
+
 if __name__ == '__main__':
     unittest.main()
