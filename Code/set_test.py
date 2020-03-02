@@ -8,5 +8,12 @@ class SetTest(unittest.TestCase):
         set = HashSet(elements)
         assert set.size is 3
 
+    def test_size(self):
+        elements = ['A', 'B', 'C', '1', '2']
+        set = HashSet(elements)
+        assert set.size is 5
+    
+    
+
 if __name__ == '__main__':
     unittest.main()
