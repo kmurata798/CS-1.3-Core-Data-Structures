@@ -49,5 +49,15 @@ class SetTest(unittest.TestCase):
         with self.assertRaises(KeyError):
             set.remove('Z')  # Element does not exist anymore
 
+    def test_union(self):
+        elements = ['W', 'X', 'Y', 'Z']
+        elements2 = ['A', 'B', 'D', 'E', 'G', 'I']
+        elements3 = ['C', 'V', 'M', 'N']
+        set1 = HashSet(elements)
+        set2 = HashSet(elements2)
+        set3 = HashSet(elements3)
+        self.assertCountEqual(set1.union(set2).hash.values(), ['A', 'B', 'D', 'E', 'G', 'I', 'W', 'X', 'Y', 'Z'])  # item order does not matter
+        self.assertCountEqual(set1.union(set3).hash.values(), ['C', 'M', 'N', 'V', 'W', 'X', 'Y', 'Z'])  # Item order does not matter
+
 if __name__ == '__main__':
     unittest.main()
