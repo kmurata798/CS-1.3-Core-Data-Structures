@@ -62,7 +62,7 @@ class HashSet:
             new_set.add(element)
 
         # Removes shared elements
-        for element in othere_set.hash.values():
+        for element in other_set.hash.values():
             if new_set.contains(element):
                 new_set.remove(element)
         return new_set
