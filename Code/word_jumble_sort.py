@@ -1,10 +1,10 @@
 # Word Jumble Unscrambler: Using sorted Python Dictionary
 
 def create_dict():
-    """Create a dictonary with keys of sorted letters (alphabetized) and a value that is a list of words that are that sorted word."""
-    # empty dictonary that we will input key value entries based off the computer's dictonary
-    dictonary = {}
-    # open the built in dictonary existing in Mac computers
+    """Create a dictionary with keys of sorted letters (alphabetized) and a value that is a list of words that are that sorted word."""
+    # empty dictionary that we will input key value entries based off the computer's dictionary
+    dictionary = {}
+    # open the built in dictionary existing in Mac computers
     with open("/usr/share/dict/words", "r") as f:
         # loop through each word in the computer's dicitonary
         for word in f:
@@ -12,11 +12,11 @@ def create_dict():
             word = word.strip().lower()
             # sort the letters of each word alphabetically
             sorted_word = ''.join(sorted(word))
-            # create an entry with the sorted word and new dict as value, or append the word to the entry that already exists
-            # setdefault() returns the value of a key, sorted_word (if it is in dictionary). If not, it inserts key with a value to the dictionary.
-            dictonary.setdefault(sorted_word, []).append(word)
-    # return the new dictonary
-    return dictonary
+            # create an entry with the sorted word as key and new dict as value, or append the word to the entry that already exists
+            # setdefault() returns the value of a key, sorted_word (if it is in dictionary). If key does not exist, it inserts key with a value to the dictionary.
+            dictionary.setdefault(sorted_word, []).append(word)
+    # return the new dictoonary
+    return dictionary
 
 def unscramble_word(word):
     # sort the scrambled word so that we can look it up based on the alphabetical order

@@ -1,3 +1,5 @@
+# Word Jumble Unscrambler: Binary tree attempt
+
 from binarytree import BinarySearchTree, BinaryTreeNode
 
 # String we want to unscramble

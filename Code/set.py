@@ -83,7 +83,7 @@ class HashSet:
     def intersection(self, other_set):
         """return a new set that is the intersection of 
         this set and other_set.
-        Average case runtime complexity: O(n) since we are looping through each element in self set.
+        Average case runtime complexity: O(m) where m is the smaller sized set. This is because we are looping through each element in the set.
         """
         # smaller, larger = self._smaller_larger_check(self, other_set)
         new_set = HashSet()
