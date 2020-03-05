@@ -15,6 +15,9 @@ def create_dict():
             # create an entry with the sorted word as key and new dict as value, or append the word to the entry that already exists
             # setdefault() returns the value of a key, sorted_word (if it is in dictionary). If key does not exist, it inserts key with a value to the dictionary.
             dictionary.setdefault(sorted_word, []).append(word)
+            print(dictionary)
+            # dictionary.append(word)
+
     # return the new dictoonary
     return dictionary
 
@@ -23,7 +26,7 @@ def unscramble_word(word):
     sorted_input = ''.join(sorted(word)) 
     # Creates alphabetized dictionary
     sorted_dict = create_dict()
-    # check if alphabetizd input string matches alphabetized computer dictionary words
+    # check if alphabetized input string matches alphabetized computer dictionary words
     if sorted_input in sorted_dict:
         #if it does match a word, return the value existing in the key, sorted_input, from the dictionary
         return sorted_dict.get(sorted_input, []) # safer usage?
