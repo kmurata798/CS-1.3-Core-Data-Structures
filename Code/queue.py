@@ -33,7 +33,7 @@ class LinkedQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(1) instant access to tail --> append()"""
+        Running time: O(1) since we have direct access to TAIL node --> append()"""
         # Insert given item
         self.list.append(item) # add item after Tail node
         # self.list.prepend(item) # add item before Head node
@@ -59,6 +59,42 @@ class LinkedQueue(object):
         # front = self.list.tail.data # Define front to be tail node
         self.list.delete(front)
         return front
+
+    def push_front(self, item):
+        """Insert item to the front of the queue.
+        Running time: O(1) since we have directt access to the HEAD node."""
+        self.list.append(item)
+
+    def push_back(self, item):
+        """Insert item to the back of the queue.
+        Running time: O(1) since we have direct access to the TAIL node."""
+        self.list.prepend(item)
+
+    def pop_front(self):
+        """Delete item at the front of the queue. Raise ValueError if the
+        queue is empty.
+        Running time: O(1) since we have direct access to the HEAD node.
+        """
+        if self.is_empty():
+            raise ValueError("Queue is Empty")
+
+        front = self.list.head.data
+        self.list.delete(front)
+
+        return front
+
+    def pop_back(self):
+        """Delete item at the back of the queue. Raise ValueError if the
+        queue is empty.
+        Running time: O(n) since we have to iterate the length of the linked list.
+        """
+        if self.is_empty():
+            raise ValueError("Queue is Empty")
+
+        back = self.list.tail.data
+        self.list.delete(back)
+
+        return back
 
 
 # Implement ArrayQueue below, then change the assignment at the bottom
