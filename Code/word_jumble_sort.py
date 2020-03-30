@@ -15,7 +15,7 @@ def create_dict():
             # create an entry with the sorted word as key and new dict as value, or append the word to the entry that already exists
             # setdefault() returns the value of a key, sorted_word (if it is in dictionary). If key does not exist, it inserts key with a value to the dictionary.
             dictionary.setdefault(sorted_word, []).append(word)
-            print(dictionary)
+            # print(dictionary)
             # dictionary.append(word)
 
     # return the new dictoonary
